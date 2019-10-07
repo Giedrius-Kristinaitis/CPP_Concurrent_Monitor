@@ -42,7 +42,7 @@ void printResults(string file);
 void processData(Data data);
 
 /**
- * ENTRY POINT OF THE PROGRAM
+ * ENTRY POINt OF THE PROGRAM
  */
 int main()
 {
