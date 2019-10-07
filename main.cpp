@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    #pragma omp parallel num_threads(4)
+    //#pragma omp parallel num_threads(4)
 
 
 
