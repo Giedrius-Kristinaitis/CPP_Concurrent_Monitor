@@ -25,6 +25,8 @@ class Data {
         double getPrice();
         int getQuantity();
         char getResult();
+
+        int compareTo(Data data);
 };
 
 #endif // DATA_H

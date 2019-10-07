@@ -40,3 +40,13 @@ int Data::getQuantity() {
 char Data::getResult() {
     return this->result;
 }
+
+int Data::compareTo(Data data) {
+    if (data->getResult() > this->result) {
+        return -1;
+    } else if (data->getResult() < this->result) {
+        return 1;
+    }
+
+    return 0;
+}
