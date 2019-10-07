@@ -1,4 +1,6 @@
 #include <omp.h>
+#include <monitor.h>
+#include <data.h>
 #include <iostream>
 
 using namespace std;
