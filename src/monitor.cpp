@@ -40,7 +40,9 @@ void Monitor::add(Data data) {
 /**
  * Removes and returns the last element from the data array
  */
-Data Monitor::pop() {
+Data* Monitor::pop() {
+    Data* data;
+
     #pragma omp critical
     {
         while (this->count == 0 && this->willHaveMoreData) {
@@ -48,15 +50,15 @@ Data Monitor::pop() {
         }
 
         if (!this->willHaveMoreData) {
-            return NULL;
+            data = nullptr;
         }
 
-        Data data = this->data[count - 1];
-
-        this->data[count - 1] = NULL;
+        data = &this->data[count - 1];
 
         count--;
     }
+
+    return data;
 }
 
 /**
@@ -66,7 +68,7 @@ int Monitor::getIndex(Data data) {
     int index = 0;
 
     for (int i = 0; i < count; i++) {
-        int compareResult = this->data[i]->compareTo(data);
+        int compareResult = this->data[i].compareTo(data);
 
         if (compareResult <= 0) {
             index = i + 1;
@@ -90,14 +92,14 @@ void Monitor::shiftElements(int index) {
 /**
  * Returns the element at the specified index
  */
-Data Monitor::get(int index) {
-    return this->data[index];
+Data* Monitor::get(int index) {
+    return &this->data[index];
 }
 
 /**
  * Gets the number of elements in the monitor
  */
-int Monitor::size() {
+int Monitor::getSize() {
     return this->count;
 }
 

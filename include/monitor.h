@@ -9,6 +9,7 @@ class Monitor {
 
     private:
         Data* data;
+        int size;
         int count;
         bool willHaveMoreData;
 
@@ -31,17 +32,17 @@ class Monitor {
         /**
          * Removes and returns the last element from the data array
          */
-        Data pop();
+        Data* pop();
 
         /**
          * Returns the element at the specified index
          */
-        Data get(int index);
+        Data* get(int index);
 
         /**
          * Gets the number of elements in the monitor
          */
-        int size();
+        int getSize();
 
         /**
          * Sets the will have more data flag

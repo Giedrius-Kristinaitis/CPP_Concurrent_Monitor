@@ -14,6 +14,7 @@ class Data {
         char result;
 
     public:
+        Data();
         Data(string title, double price, int quantity);
 
         void setTitle(string title);

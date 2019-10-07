@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Data::Data() {}
+
 Data::Data(string title, double price, int quantity) {
     this->title = title;
     this->price = price;
@@ -42,9 +44,9 @@ char Data::getResult() {
 }
 
 int Data::compareTo(Data data) {
-    if (data->getResult() > this->result) {
+    if (data.getResult() > this->result) {
         return -1;
-    } else if (data->getResult() < this->result) {
+    } else if (data.getResult() < this->result) {
         return 1;
     }
 
