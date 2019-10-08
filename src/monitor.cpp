@@ -1,5 +1,7 @@
 #include "monitor.h"
 #include "data.h"
+#include <omp.h>
+#include <iostream>
 
 using namespace std;
 
@@ -7,58 +9,83 @@ using namespace std;
  * Class constructor
  */
 Monitor::Monitor(int size) {
-    this->data = new Data[size];
+    this->size = size;
+    this->count = 0;
+
+    this->initializeData();
+
+    omp_init_lock(&this->addLock);
+    omp_init_lock(&this->popLock);
 }
 
 /**
  * Class destructor
  */
 Monitor::~Monitor() {
-    delete[] this->data;
+    this->destroyData();
+
+    omp_destroy_lock(&this->addLock);
+    omp_destroy_lock(&this->popLock);
 }
 
 /**
  * Adds an element to the monitor (in the correct position based on sort order)
  */
 void Monitor::add(Data data) {
-    #pragma omp critical
-    {
-        while (this->count == this->size) {
-            // spin-wait while the data array is full
-        }
+    omp_set_lock(&this->addLock);
 
-        int index = this->getIndex(data);
-
-        this->shiftElements(index);
-
-        this->data[index] = data;
-
-        this->count++;
+    while (this->count == this->size) {
+        // spin-wait while the data array is full
     }
+
+    int index = this->getIndex(data);
+
+    this->shiftElements(index);
+
+    this->data[index] = data;
+
+    this->count++;
+
+    omp_unset_lock(&this->addLock);
 }
 
 /**
  * Removes and returns the last element from the data array
  */
 Data* Monitor::pop() {
+    omp_set_lock(&this->popLock);
+
     Data* data;
 
-    #pragma omp critical
-    {
-        while (this->count == 0 && this->willHaveMoreData) {
-            // spin-wait while there is no data
-        }
-
-        if (!this->willHaveMoreData) {
-            data = nullptr;
-        }
-
-        data = &this->data[count - 1];
-
-        count--;
+    while (this->count == 0 && this->willHaveMoreData) {
+        // spin-wait while there is no data
     }
 
-    return data;
+    if (this->count == 0 && !this->willHaveMoreData) {
+        omp_unset_lock(&this->popLock);
+
+        return nullptr;
+    }
+
+    data = &this->data[this->count - 1];
+
+    this->count--;
+
+    Data* copy = new Data;
+
+    if (data != nullptr) {
+        copy->setTitle(data->getTitle());
+        copy->setPrice(data->getPrice());
+        copy->setQuantity(data->getQuantity());
+    }
+
+    omp_unset_lock(&this->popLock);
+
+    if(data == nullptr){
+        return data;
+    } else {
+        return copy;
+    }
 }
 
 /**
@@ -67,7 +94,7 @@ Data* Monitor::pop() {
 int Monitor::getIndex(Data data) {
     int index = 0;
 
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < this->count; i++) {
         int compareResult = this->data[i].compareTo(data);
 
         if (compareResult <= 0) {
@@ -84,7 +111,7 @@ int Monitor::getIndex(Data data) {
  * Shifts all elements to the right starting from the specified index
  */
 void Monitor::shiftElements(int index) {
-    for (int i = count - 1; i > index; i--) {
+    for (int i = this->count - 1; i > index; i--) {
         this->data[i] = this->data[i - 1];
     }
 }
@@ -108,4 +135,26 @@ int Monitor::getSize() {
  */
 void Monitor::setWillHaveMoreData(bool willHaveMoreData) {
     this->willHaveMoreData = willHaveMoreData;
+}
+
+/**
+ * Clears the monitor
+ */
+void Monitor::clear() {
+    this->count = 0;
+    this->willHaveMoreData = true;
+}
+
+/**
+ * Initializes the inner data array
+ */
+void Monitor::initializeData() {
+    this->data = new Data[size];
+}
+
+/**
+ * Destroys the inner data array
+ */
+void Monitor::destroyData() {
+    delete[] this->data;
 }

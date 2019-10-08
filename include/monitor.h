@@ -2,6 +2,7 @@
 #define MONITOR_H
 
 #include "data.h"
+#include <omp.h>
 
 using namespace std;
 
@@ -12,6 +13,8 @@ class Monitor {
         int size;
         int count;
         bool willHaveMoreData;
+        omp_lock_t addLock;
+        omp_lock_t popLock;
 
     public:
         /**
@@ -49,6 +52,11 @@ class Monitor {
          */
         void setWillHaveMoreData(bool willHaveMoreData);
 
+        /**
+         * Clears the monitor
+         */
+        void clear();
+
     private:
         /**
          * Gets the correct position of an element based on it's sort order
@@ -59,6 +67,16 @@ class Monitor {
          * Shifts all elements to the right starting from the specified index
          */
         void shiftElements(int index);
+
+        /**
+         * Initializes the inner data array
+         */
+        void initializeData();
+
+        /**
+         * Destroys the inner data array
+         */
+        void destroyData();
 };
 
 #endif // MONITOR_H
