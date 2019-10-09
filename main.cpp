@@ -15,7 +15,7 @@ using namespace nlohmann;
  * BY ADDING FUNCTION PARAMETERS, BUT WHATEVER
  */
 const char LETTERS[] = {
-    'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 'q', 's', 't', 'v', 'x', 'z', 'w'
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '/', '\0', ' ', 'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 'q', 's', 't', 'v', 'x', 'z', 'w'
 };
 
 const int DATA_FILE_COUNT = 3;
@@ -82,7 +82,7 @@ int main()
  * Processes a file
  */
 void processFile(string file) {
-    monitor = new Monitor(10);
+    monitor = new Monitor(25);
     results = new Monitor(25);
 
     dataElementsProcessed = 0;
@@ -179,7 +179,7 @@ void processData(Data* data) {
     const int endValue = data->getPrice() * data->getQuantity() * data->getQuantity();
 
     for (int i = 0; i < endValue; i++) {
-        result = data->getTitle().at(i % (data->getTitle().length() - 1));
+        result = data->getTitle().at(i % (data->getTitle().length()));
     }
 
     data->setResult(result);

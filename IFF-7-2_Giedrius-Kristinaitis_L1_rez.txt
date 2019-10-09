@@ -3,31 +3,48 @@ IFF-7-2_Giedrius_Kristinaitis_L1_dat_1.json Results
 ----------------------------------------------------------
 Title|Price|Quantity|Result
 ----------------------------------------------------------
-sdfgbdfbh|420|100|b
-50/2 bbbbbbbbbbbbbbbbbbb|420|100|b
+2/1 bbbbbbbbbbbbbbbbbbb|420|100|b
 51/3 bbbbbbbbbbbbbbbbbbb|420|100|b
-vcvcvccv|420|100|c
-sdcwdccf|420|100|c
-dfdfdf|420|100|d
-sdfvsdfv|420|100|f
-sdfvsdfgb|420|100|g
-ghghgh|420|100|g
-dbgbhdfgb|420|100|g
-hjhjhjhj|420|100|h
-plplplp|420|100|l
-ghmg|420|100|m
-Sxth|420|100|t
+50/2 bbbbbbbbbbbbbbbbbbb|420|100|b
+4/3 bbbbbbbbbbbbbbbbbbb|420|100|b
+3/2 bbbbbbbbbbbbbbbbbbb|420|100|b
+dbgbhdfgb|420|100|d
+sdsdsd|420|100|d
+sdfgbdfbh|420|100|d
+sdfvsdfgb|420|100|d
+sdcwdccf|420|100|f
+dfdfdf|420|100|f
+ghmg|420|100|g
+ghghgh|420|100|h
+Svnth|420|100|h
+Sxth|420|100|h
+hjhjhjhj|420|100|j
+gmkhjm|420|100|m
+vtbjgjnn|420|100|n
+dfghnfhn|420|100|n
+plplplp|420|100|p
+ss|420|100|s
+rtrtrtrt|420|100|t
+Frfgst|420|100|t
+vcvcvccv|420|100|v
+sdfvsdfv|420|100|v
 ----------------------------------------------------------
 IFF-7-2_Giedrius_Kristinaitis_L1_dat_2.json Results
 ----------------------------------------------------------
 Title|Price|Quantity|Result
 ----------------------------------------------------------
+2/1 bbbbbbbbbbbbbbbbbbb|420|100|b
 50/2 bbbbbbbbbbbbbbbbbbb|420|100|b
 51/3 bbbbbbbbbbbbbbbbbbb|420|100|b
-sdcwdccf|420|100|c
+4/3 bbbbbbbbbbbbbbbbbbb|420|100|b
+3/2 bbbbbbbbbbbbbbbbbbb|420|100|b
 ccccccccccc|420|100|c
-dfdfdf|420|100|d
-ghghgh|420|100|g
+sdsdsd|420|100|d
+sdcwdccf|420|100|f
+dfdfdf|420|100|f
+ghghgh|420|100|h
+dfghnfhn|420|100|n
+ss|420|100|s
 ----------------------------------------------------------
 IFF-7-2_Giedrius_Kristinaitis_L1_dat_3.json Results
 ----------------------------------------------------------

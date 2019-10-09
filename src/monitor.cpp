@@ -107,7 +107,7 @@ int Monitor::getIndex(Data data) {
  * Shifts all elements to the right starting from the specified index
  */
 void Monitor::shiftElements(int index) {
-    for (int i = this->count - 1; i > index; i--) {
+    for (int i = this->size - 1; i > index; i--) {
         this->data[i] = this->data[i - 1];
     }
 }
