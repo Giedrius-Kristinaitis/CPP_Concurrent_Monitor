@@ -14,8 +14,7 @@ Monitor::Monitor(int size) {
 
     this->initializeData();
 
-    omp_init_lock(&this->addLock);
-    omp_init_lock(&this->popLock);
+    omp_init_lock(&this->lock);
 }
 
 /**
@@ -24,19 +23,18 @@ Monitor::Monitor(int size) {
 Monitor::~Monitor() {
     this->destroyData();
 
-    omp_destroy_lock(&this->addLock);
-    omp_destroy_lock(&this->popLock);
+    omp_destroy_lock(&this->lock);
 }
 
 /**
  * Adds an element to the monitor (in the correct position based on sort order)
  */
 void Monitor::add(Data data) {
-    omp_set_lock(&this->addLock);
-
     while (this->count == this->size) {
         // spin-wait while the data array is full
     }
+
+    omp_set_lock(&this->lock);
 
     int index = this->getIndex(data);
 
@@ -46,15 +44,13 @@ void Monitor::add(Data data) {
 
     this->count++;
 
-    omp_unset_lock(&this->addLock);
+    omp_unset_lock(&this->lock);
 }
 
 /**
  * Removes and returns the last element from the data array
  */
 Data* Monitor::pop() {
-    omp_set_lock(&this->popLock);
-
     Data* data;
 
     while (this->count == 0 && this->willHaveMoreData) {
@@ -62,10 +58,10 @@ Data* Monitor::pop() {
     }
 
     if (this->count == 0 && !this->willHaveMoreData) {
-        omp_unset_lock(&this->popLock);
-
         return nullptr;
     }
+
+    omp_set_lock(&this->lock);
 
     data = &this->data[this->count - 1];
 
@@ -79,7 +75,7 @@ Data* Monitor::pop() {
         copy->setQuantity(data->getQuantity());
     }
 
-    omp_unset_lock(&this->popLock);
+    omp_unset_lock(&this->lock);
 
     if(data == nullptr){
         return data;

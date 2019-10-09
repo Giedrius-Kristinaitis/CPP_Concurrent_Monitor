@@ -3,19 +3,34 @@ IFF-7-2_Giedrius_Kristinaitis_L1_dat_1.json Results
 ----------------------------------------------------------
 Title|Price|Quantity|Result
 ----------------------------------------------------------
+sdfgbdfbh|420|100|b
 50/2 bbbbbbbbbbbbbbbbbbb|420|100|b
 51/3 bbbbbbbbbbbbbbbbbbb|420|100|b
 vcvcvccv|420|100|c
 sdcwdccf|420|100|c
-dfdfdf|420|100|d
 dfdfdf|420|100|d
 sdfvsdfv|420|100|f
 sdfvsdfgb|420|100|g
 ghghgh|420|100|g
 dbgbhdfgb|420|100|g
 hjhjhjhj|420|100|h
-gmkhjm|420|100|j
 plplplp|420|100|l
 ghmg|420|100|m
-ss|420|100|s
-Svnth|420|100|t
+Sxth|420|100|t
+----------------------------------------------------------
+IFF-7-2_Giedrius_Kristinaitis_L1_dat_2.json Results
+----------------------------------------------------------
+Title|Price|Quantity|Result
+----------------------------------------------------------
+50/2 bbbbbbbbbbbbbbbbbbb|420|100|b
+51/3 bbbbbbbbbbbbbbbbbbb|420|100|b
+sdcwdccf|420|100|c
+ccccccccccc|420|100|c
+dfdfdf|420|100|d
+ghghgh|420|100|g
+----------------------------------------------------------
+IFF-7-2_Giedrius_Kristinaitis_L1_dat_3.json Results
+----------------------------------------------------------
+Title|Price|Quantity|Result
+----------------------------------------------------------
+No results - no elements match the filter

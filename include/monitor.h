@@ -13,8 +13,7 @@ class Monitor {
         int size;
         int count;
         bool willHaveMoreData;
-        omp_lock_t addLock;
-        omp_lock_t popLock;
+        omp_lock_t lock;
 
     public:
         /**
